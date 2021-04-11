@@ -1,0 +1,55 @@
+<html>
+<head>
+</head>
+<body>
+
+<h1>概要</h1>
+
+特定の製品に依存しないthumb命令を処理するソフトウェアエミュレータです。<br>
+
+<h1>本エミュレータの仕様</h1>
+
+<a href="https://ichigojam.github.io/asm15/armasm.html">この情報源</a>
+に基づいてエミュレータの仕様を作ります。<br>
+<br>
+<br>
+
+バイナリファイル名 オプション m0plus 実行 仕様 加える<br>
+<br>
+逆アセンブル 否定 加える オプション 加える<br>
+実行トレース オプション 加える<br>
+<br>
+thumb_asm15_ 仕様 加える<br>
+<br>
+cortexM0+ 仕様 加える<br>
+<br>
+ROM領域 RAM領域 + 仕様 加える<br>
+<br>
+0x0400_0000 開始アドレス + ROM領域 加える<br>
+0x0F00_0000 終端アドレス + ROM領域 加える<br>
+0x1000_0000 開始アドレス + RAM領域 加える<br>
+0x1f00_0000 終端アドレス + RAM領域 加える<br>
+<br>
+256 コードサイズ制限値 加える 仕様 加える<br>
+<br>
+レジスタセット 仕様 加える<br>
+ステータスレジスタ 仕様 加える<br>
+ベクタ割り込み 否定 仕様 加える<br>
+ハードウェアフォルト 仕様 加える<br>
+GOSUBn22 否定 加える thumb_asm15_ 加える<br>
+CPSID 否定 加える thumb_asm15_ 加える<br>
+CPSIE 否定 加える thumb_asm15_ 加える<br>
+WFI 否定 加える thumb_asm15_ 加える<br>
+YIELD 否定 加える thumb_asm15_ 加える<br>
+WFE 否定 加える thumb_asm15_ 加える<br>
+SEV 否定 加える thumb_asm15_ 加える<br>
+SVC 否定 加える thumb_asm15_ 加える<br>
+<br>
+テスト 仕様 加える<br>
+ロケータブル プログラム 加える テスト 加える<br>
+レジスタ 分岐 加える テスト 加える<br>
+<br>
+</body>
+</html>
+
+
