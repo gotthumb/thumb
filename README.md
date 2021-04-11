@@ -6,7 +6,7 @@ documentation use for making simulator. You have to pay money to
 ARM to use documentation for simulation purposes and so all ARM 
 simulators for latest architectures are non free.
 
-従って、[この情報源](https://ichigojam.github.io/asm15/armasm.html")に基づいてエミュレータの仕様を作ります。
+従って、[この情報源](https://ichigojam.github.io/asm15/armasm.html)に基づいてエミュレータの仕様を作ります。
 詳細は、SPECIFICATIONを参照してください。
 
 
