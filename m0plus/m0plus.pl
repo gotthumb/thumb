@@ -73,6 +73,14 @@
       $im8 = ( $opcode & 0xff );
       printf "mov r%d, #%d\n", $rgd, $im8;
    }
+   # Rd = Rm
+   elsif ( ( $opcode & 0xff00 ) == 0x4600 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0080 ) / 0x10 + ( $opcode & 0x0007 ) ;
+      $rgm = ( $opcode & 0x0078 ) / 0x8 ;
+      printf "mov r%d, r%d\n", $rgd, $rgm;
+   }
    else
    {
       $pc = $pc + 2;
@@ -84,7 +92,6 @@
          break;
    }
 
- 
 #                               :
 #
 #
