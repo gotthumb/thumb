@@ -81,6 +81,14 @@
       $rgm = ( $opcode & 0x0078 ) / 0x8 ;
       printf "mov r%d, r%d\n", $rgd, $rgm;
    }
+   # Rd += u8
+   elsif ( ( $opcode & 0xf800 ) == 0x3000 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0700 ) / 0x100 ;
+      $im8 = ( $opcode & 0xff );
+      printf "add r%d, r%d, #%d\n", $rgd, $rgd, $im8;
+   }
    else
    {
       $pc = $pc + 2;
