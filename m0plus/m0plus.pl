@@ -61,7 +61,7 @@
    my $im8 = 0;
    my $pc = 0;
 
-   $opcode = hex("0x"+$mem[$pc+1].$mem[$pc]);
+   $opcode = hex("0x".$mem[$pc+1].$mem[$pc]);
 
    # printf " mem[$pc] = %04x", $opcode ;
 
@@ -96,6 +96,14 @@
       $rgd = ( $opcode & 0x0700 ) / 0x100 ;
       $im8 = ( $opcode & 0xff );
       printf "sub r%d, r%d, #%d\n", $rgd, $rgd, $im8;
+   }
+   # Rd = PC + u8
+   elsif ( ( $opcode & 0xf800 ) == 0xa000 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0700 ) / 0x100 ;
+      $im8 = ( $opcode & 0xff );
+      printf "ldr r%d, [ PC, #%d ]\n", $rgd, $im8;
    }
    else
    {
