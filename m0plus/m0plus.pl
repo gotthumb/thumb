@@ -105,6 +105,14 @@
       $im8 = ( $opcode & 0xff );
       printf "ldr r%d, [ PC, #%d ]\n", $rgd, $im8;
    }
+   # Rd += Rm
+   elsif ( ( $opcode & 0xff00 ) == 0x4400 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0080 ) / 0x10 + ( $opcode & 0x0007 ) ;
+      $rgm = ( $opcode & 0x0078 ) / 0x8 ; 
+      printf "add r%d, r%d, r%d\n", $rgd, $rgd, $rgm;
+   }
    else
    {
       $pc = $pc + 2;
