@@ -113,6 +113,15 @@
       $rgm = ( $opcode & 0x0078 ) / 0x8 ; 
       printf "add r%d, r%d, r%d\n", $rgd, $rgd, $rgm;
    }
+   # Rd = Rn + u3
+   elsif ( ( $opcode & 0xfe00 ) == 0x1c00 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = ( $opcode & 0x0038 ) / 0x8 ; 
+      $im3 = ( $opcode & 0x01c0 ) / 0x40 ;
+      printf "add r%d, r%d, #%d\n", $rgd, $rgn, $im3 ;
+   }
    else
    {
       $pc = $pc + 2;
