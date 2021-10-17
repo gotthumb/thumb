@@ -71,7 +71,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x700 ) / 0x100;
       $im8 = ( $opcode & 0xff );
-      printf "mov r%d, #%d\n", $rgd, $im8;
+      printf "R%d = #%d\n", $rgd, $im8;
    }
    # Rd = Rm
    elsif ( ( $opcode & 0xff00 ) == 0x4600 )
@@ -79,7 +79,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x0080 ) / 0x10 + ( $opcode & 0x0007 ) ;
       $rgm = ( $opcode & 0x0078 ) / 0x8 ;
-      printf "mov r%d, r%d\n", $rgd, $rgm;
+      printf "R%d = R%d\n", $rgd, $rgm;
    }
    # Rd += u8
    elsif ( ( $opcode & 0xf800 ) == 0x3000 )
@@ -87,7 +87,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x0700 ) / 0x100 ;
       $im8 = ( $opcode & 0xff );
-      printf "add r%d, r%d, #%d\n", $rgd, $rgd, $im8;
+      printf "R%d = R%d + #%d\n", $rgd, $rgd, $im8;
    }
    # Rd -= u8
    elsif ( ( $opcode & 0xf800 ) == 0x3800 )
@@ -95,7 +95,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x0700 ) / 0x100 ;
       $im8 = ( $opcode & 0xff );
-      printf "sub r%d, r%d, #%d\n", $rgd, $rgd, $im8;
+      printf "R%d = R%d + #%d\n", $rgd, $rgd, $im8;
    }
    # Rd = PC + u8
    elsif ( ( $opcode & 0xf800 ) == 0xa000 )
@@ -103,7 +103,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x0700 ) / 0x100 ;
       $im8 = ( $opcode & 0xff );
-      printf "ldr r%d, [ PC, #%d ]\n", $rgd, $im8;
+      printf "R%d = PC + #%d ]\n", $rgd, $im8;
    }
    # Rd += Rm
    elsif ( ( $opcode & 0xff00 ) == 0x4400 )
@@ -111,7 +111,7 @@
       $pc = $pc + 2;
       $rgd = ( $opcode & 0x0080 ) / 0x10 + ( $opcode & 0x0007 ) ;
       $rgm = ( $opcode & 0x0078 ) / 0x8 ; 
-      printf "add r%d, r%d, r%d\n", $rgd, $rgd, $rgm;
+      printf "R%d = R%d + R%d\n", $rgd, $rgd, $rgm;
    }
    # Rd = Rn + u3
    elsif ( ( $opcode & 0xfe00 ) == 0x1c00 )
@@ -120,7 +120,16 @@
       $rgd = ( $opcode & 0x0007 ) ;
       $rgn = ( $opcode & 0x0038 ) / 0x8 ; 
       $im3 = ( $opcode & 0x01c0 ) / 0x40 ;
-      printf "add r%d, r%d, #%d\n", $rgd, $rgn, $im3 ;
+      printf "R%d = R%d + #%d\n", $rgd, $rgn, $im3 ;
+   }
+   # Rd = Rn - u3
+   elsif ( ( $opcode & 0xfe00 ) == 0x1e00 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = ( $opcode & 0x0038 ) / 0x8 ; 
+      $im3 = ( $opcode & 0x01c0 ) / 0x40 ;
+      printf "R%d = R%d - #%d\n", $rgd, $rgn, $im3 ;
    }
    else
    {
