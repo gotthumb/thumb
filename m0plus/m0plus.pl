@@ -59,6 +59,7 @@
    my $rgm = 0;
    my $rgn = 0;
    my $im8 = 0;
+   my $u5  = 0;
    my $pc = 0;
 
    $opcode = hex("0x".$mem[$pc+1].$mem[$pc]);
@@ -166,6 +167,16 @@
       $rgn = 0 ;
       $rgm = ( $opcode & 0x0038 ) / 0x8 ;
       printf "R%d *= R%d\n", $rgd, $rgm ;
+   }
+   # Rd = Rm << u5
+   elsif ( ( $opcode & 0xf800 ) == 0x0 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = 0 ;
+      $rgm = ( $opcode & 0x0038 ) / 0x8 ;
+      $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
+      printf "R%d = R%d << %d\n", $rgd, $rgm, $u5 ;
    }
    else
    {
