@@ -178,6 +178,16 @@
       $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
       printf "R%d = R%d << %d\n", $rgd, $rgm, $u5 ;
    }
+   # Rd = Rm >> u5
+   elsif ( ( $opcode & 0xf800 ) == 0x800 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = 0 ;
+      $rgm = ( $opcode & 0x0038 ) / 0x8 ;
+      $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
+      printf "R%d = R%d >> %d\n", $rgd, $rgm, $u5 ;
+   }
    else
    {
       $pc = $pc + 2;
