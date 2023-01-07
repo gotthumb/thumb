@@ -198,6 +198,16 @@
       $u5  = 0 ;
       printf "R%d <<= R%d\n", $rgd, $rgm ;
    }
+   # Rd >>= Rm
+   elsif ( ( $opcode & 0xffc0 ) == 0x40c0 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = 0 ;
+      $rgm = ( $opcode & 0x0038 ) / 0x8 ;
+      $u5  = 0 ;
+      printf "R%d >>= R%d\n", $rgd, $rgm ;
+   }
    else
    {
       $pc = $pc + 2;
