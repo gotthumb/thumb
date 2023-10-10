@@ -278,6 +278,26 @@
       $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
       printf "R%d = [R%d + %d]L\n", $rgd, $rgn, $u5 ;
    }
+#  # Rd = [PC + u8]L
+#  elsif ( ( $opcode & 0xf800 ) == 0x4800 )
+#  {
+#     $pc = $pc + 2;
+#     $rgd = ( $opcode & 0x0007 ) ;
+#     $rgn = ( $opcode & 0x0038 ) / 0x8 ;
+#     $rgm = 0 ;
+#     $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
+#     printf "R%d = [R%d + %d]L\n", $rgd, $rgn, $u5 ;
+#  }
+   # Rd = [Rn + Rm]
+   elsif ( ( $opcode & 0xfe00 ) == 0x5c00 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = ( $opcode & 0x0038 ) / 0x8 ;
+      $rgm = ( $opcode & 0x01c0 ) / 0x40 ;
+      $u5  = 0 ;
+      printf "R%d = [R%d + R%d]\n", $rgd, $rgn, $rgm ;
+   }
    else
    {
       $pc = $pc + 2;
