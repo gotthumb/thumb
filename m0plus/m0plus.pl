@@ -338,6 +338,16 @@
       $u5  = 0 ;
       printf "R%d = [R%d + R%d]L\n", $rgd, $rgn, $rgm ;
    }
+   # [Rn + u5] = Rd
+   elsif ( ( $opcode & 0xf800 ) == 0x7000 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = ( $opcode & 0x0038 ) / 0x8 ;
+      $rgm = 0 ;
+      $u5  = ( $opcode & 0x07c0 ) / 0x40 ;
+      printf "[R%d + %d] = R%d\n", $rgn, $u5, $rgd ;
+   }
    else
    {
       $pc = $pc + 2;
