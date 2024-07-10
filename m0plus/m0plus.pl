@@ -378,6 +378,16 @@
       $u5  = 0 ;
       printf "[R%d + R%d] = R%d\n", $rgn, $rgm, $rgd ;
    }
+   # [Rn + Rm]W = Rd
+   elsif ( ( $opcode & 0xfe00 ) == 0x5200 )
+   {
+      $pc = $pc + 2;
+      $rgd = ( $opcode & 0x0007 ) ;
+      $rgn = ( $opcode & 0x0038 ) / 0x8 ;
+      $rgm = ( $opcode & 0x01c0 ) / 0x40 ;
+      $u5  = 0 ;
+      printf "[R%d + R%d]W = R%d\n", $rgn, $rgm, $rgd ;
+   }
    else
    {
       $pc = $pc + 2;
