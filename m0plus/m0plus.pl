@@ -418,6 +418,16 @@
       $u8  = 0 ;
       printf "R%d - R%d\n", $rgn, $rgm ;
    }
+   # Rn - Rm
+   elsif ( ( $opcode & 0xffc0 ) == 0x4280 )
+   {
+      $pc = $pc + 2;
+      $rgd = 0 ;
+      $rgn = ( $opcode & 0x7 ) ;
+      $rgm = ( $opcode & 0x038 ) / 0x8 ; ;
+      $u8  = 0 ;
+      printf "R%d - R%d\n", $rgn, $rgm ;
+   }
    else
    {
       $pc = $pc + 2;
