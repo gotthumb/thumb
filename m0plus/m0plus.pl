@@ -58,6 +58,8 @@
    my $rgd = 0;
    my $rgm = 0;
    my $rgn = 0;
+   my $u8  = 0;
+   my $n8  = 0;
    my $im8 = 0;
    my $u5  = 0;
    my $pc = 0;
@@ -414,7 +416,7 @@
       $pc = $pc + 2;
       $rgd = 0 ;
       $rgn = ( $opcode & 0x80 ) / 0x10 + ( $opcode & 0x7 ) ;
-      $rgm = ( $opcode & 0x078 ) / 0x8 ; ;
+      $rgm = ( $opcode & 0x078 ) / 0x8 ;
       $u8  = 0 ;
       printf "R%d - R%d\n", $rgn, $rgm ;
    }
@@ -424,7 +426,7 @@
       $pc = $pc + 2;
       $rgd = 0 ;
       $rgn = ( $opcode & 0x7 ) ;
-      $rgm = ( $opcode & 0x038 ) / 0x8 ; ;
+      $rgm = ( $opcode & 0x038 ) / 0x8 ;
       $u8  = 0 ;
       printf "R%d - R%d\n", $rgn, $rgm ;
    }
@@ -434,7 +436,7 @@
       $pc = $pc + 2;
       $rgd = 0 ;
       $rgn = ( $opcode & 0x7 ) ;
-      $rgm = ( $opcode & 0x038 ) / 0x8 ; ;
+      $rgm = ( $opcode & 0x038 ) / 0x8 ;
       $u8  = 0 ;
       printf "R%d + R%d\n", $rgn, $rgm ;
    }
@@ -444,9 +446,19 @@
       $pc = $pc + 2;
       $rgd = 0 ;
       $rgn = ( $opcode & 0x7 ) ;
-      $rgm = ( $opcode & 0x038 ) / 0x8 ; ;
+      $rgm = ( $opcode & 0x038 ) / 0x8 ;
       $u8  = 0 ;
       printf "R%d & R%d\n", $rgn, $rgm ;
+   }
+   # IF 0 GOTO n8
+   elsif ( ( $opcode & 0xff00 ) == 0xd000 )
+   {
+      $pc = $pc + 2;
+      $rgd = 0 ;
+      $rgn = 0 ;
+      $rgm = 0 ;
+      $n8  = ( $opcode & 0xff ) ;
+      printf "IF 0 GOTO n8\n", $n8 ;
    }
    else
    {
