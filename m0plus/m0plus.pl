@@ -460,6 +460,16 @@
       $n8  = ( $opcode & 0xff ) ;
       printf "IF 0 GOTO n8\n", $n8 ;
    }
+   # IF !0 GOTO n8
+   elsif ( ( $opcode & 0xff00 ) == 0xd100 )
+   {
+      $pc = $pc + 2;
+      $rgd = 0 ;
+      $rgn = 0 ;
+      $rgm = 0 ;
+      $n8  = ( $opcode & 0xff ) ;
+      printf "IF !0 GOTO n8\n", $n8 ;
+   }
    else
    {
       $pc = $pc + 2;
